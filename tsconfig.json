@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+        "target": "es5",
+        "module": "system",
+        "sourceMap": false,
+        "inlineSources": false,
+        "outDir" : "output"
+    },
+    "filesGlob": [
+        "./*.ts",
+        "./**/*.ts",
+        "!./**/*.d.ts",
+        "./inspinia.js"
+    ]
+}
