@@ -1,4 +1,4 @@
-///<reference path="../../output/gravity.d.ts"/>
+///<reference path="../Definitions/gravity.d.ts"/>
 System.register(["./Services", "../Controllers/ModuleController", "../Views/Module/ModuleView"], function (exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
@@ -15,7 +15,7 @@ System.register(["./Services", "../Controllers/ModuleController", "../Views/Modu
                 ModuleView_1 = ModuleView_1_1;
             }
         ],
-        execute: function () {///<reference path="../../output/gravity.d.ts"/>
+        execute: function () {///<reference path="../Definitions/gravity.d.ts"/>
             AppConfig = (function () {
                 function AppConfig() {
                 }

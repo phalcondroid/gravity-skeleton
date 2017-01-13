@@ -1,4 +1,4 @@
-///<reference path="../output/gravity.d.ts"/>
+///<reference path="./Definitions/gravity.d.ts"/>
 
 import { AppConfig }   from "./Config/AppConfig";
 

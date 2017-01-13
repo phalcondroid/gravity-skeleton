@@ -1,4 +1,4 @@
-/// <reference path="../../../output/gravity.d.ts"/>
+///<reference path="../../Definitions/gravity.d.ts"/>
 
 export class ModuleView extends View.Component
 {
@@ -7,21 +7,13 @@ export class ModuleView extends View.Component
      */
     public initialize()
     {
-        var body = this.getByTag("body");
-        var div  = new Html.Div();
-        var text = this.getVar("hello");
+        var div   = this.getByTag("div");
+        var text   = this.getVar("hello");
 
-        var button = new Html.Button();
-        button.click(function () {
-            div.append(
-                text
-            );
-        });
-
-        body.append([
-            button,
-            "<br/>",
-            div
-        ]);
+        for (var k in div) {
+            div[k].append([
+                new Html.H1().append(text)
+            ]);
+        }
     }
 }

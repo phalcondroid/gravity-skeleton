@@ -1,4 +1,4 @@
-///<reference path="../../output/gravity.d.ts"/>
+///<reference path="../Definitions/gravity.d.ts"/>
 System.register([], function (exports_1, context_1) {
     "use strict";
     var __extends = (this && this.__extends) || function (d, b) {
@@ -10,7 +10,7 @@ System.register([], function (exports_1, context_1) {
     var ModuleController;
     return {
         setters: [],
-        execute: function () {///<reference path="../../output/gravity.d.ts"/>
+        execute: function () {///<reference path="../Definitions/gravity.d.ts"/>
             ModuleController = (function (_super) {
                 __extends(ModuleController, _super);
                 function ModuleController() {

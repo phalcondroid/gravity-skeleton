@@ -1,4 +1,4 @@
-///<reference path="../../output/gravity.d.ts"/>
+///<reference path="../Definitions/gravity.d.ts"/>
 System.register(["../Library/MyCustomComponent"], function (exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
@@ -9,7 +9,7 @@ System.register(["../Library/MyCustomComponent"], function (exports_1, context_1
                 MyCustomComponent_1 = MyCustomComponent_1_1;
             }
         ],
-        execute: function () {///<reference path="../../output/gravity.d.ts"/>
+        execute: function () {///<reference path="../Definitions/gravity.d.ts"/>
             Services = (function () {
                 function Services() {
                 }

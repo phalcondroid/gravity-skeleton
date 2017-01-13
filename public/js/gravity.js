@@ -812,9 +812,7 @@ var Hydrator;
     }());
     Hydrator_1.Hydrator = Hydrator;
 })(Hydrator || (Hydrator = {}));
-/// <reference path='../Definitions/promise-polyfill.d.ts' />
 var Network;
-/// <reference path='../Definitions/promise-polyfill.d.ts' />
 (function (Network) {
     var MethodType = (function () {
         function MethodType() {
@@ -1411,6 +1409,10 @@ var Html;
             }
             return this;
         }
+        HtmlElement.prototype.setElement = function (element) {
+            this.element = element;
+            return this;
+        };
         /**
          *
          */
@@ -1422,14 +1424,28 @@ var Html;
          *
          */
         HtmlElement.prototype.byTag = function (name) {
-            this.element = document.getElementsByTagName(name);
-            return this;
+            var elements = document.getElementsByTagName(name);
+            var result = new Array();
+            for (var key in elements) {
+                result.push(new Html.HtmlElement().setElement(elements[key]));
+            }
+            if (result.length == 1) {
+                return result[0];
+            }
+            return result;
         };
         /**
          *
          */
         HtmlElement.prototype.byClass = function (name) {
-            this.element = document.getElementsByClassName(name);
+            var elements = document.getElementsByClassName(name);
+            var result = new Array();
+            for (var key in elements) {
+                result.push(new Html.HtmlElement().setElement(elements[key]));
+            }
+            if (result.length == 1) {
+                return result[0];
+            }
             return this;
         };
         /**
@@ -1577,7 +1593,7 @@ var Html;
          * @return this
          */
         HtmlElement.prototype.append = function (append) {
-            if (Array.isArray(append)) {
+            if (Array.isArray(append) || (append instanceof HTMLCollection)) {
                 for (var key in append) {
                     this.checkAppendValue(append[key]);
                 }
@@ -1600,14 +1616,13 @@ var Html;
                     break;
                 case "object":
                     if (append instanceof Html.HtmlElement) {
-                        this.element.appendChild(append.getElement());
+                        this.verifyElement(append.getElement());
                     }
                     else {
-                        this.element.appendChild(append);
+                        this.verifyElement(append);
                     }
                     break;
                 default:
-                    this.element.appendChild(append);
                     break;
             }
         };
@@ -1619,18 +1634,47 @@ var Html;
         HtmlElement.prototype.html = function (html) {
             if (html === void 0) { html = null; }
             if (html != null) {
-                this.getElement().innerHTML = html;
+                this.removeChildNodes();
+                this.append(html);
                 return this;
             }
             else {
                 return this.element.innerHTML;
             }
         };
-        /**
-         *
-         */
-        HtmlElement.prototype.getHtml = function () {
-            return this.element.innerHtml;
+        HtmlElement.prototype.verifyElement = function (append, type) {
+            if (type === void 0) { type = "append"; }
+            if (this.element instanceof HTMLCollection) {
+                for (var key in this.element) {
+                    if (typeof this.element[key].nodeType != "undefined") {
+                        if (this.element[key].nodeType == 1) {
+                            this.element[key].appendChild(append);
+                        }
+                    }
+                }
+            }
+            else {
+                this.element.appendChild(append);
+            }
+        };
+        HtmlElement.prototype.removeChildNodes = function () {
+            if (this.element instanceof HTMLCollection) {
+                for (var key in this.element) {
+                    this.removeChilds(this.element[key], this.element[key].childNodes);
+                }
+            }
+            else {
+                this.removeChilds(this.element, this.element.childNodes);
+            }
+        };
+        HtmlElement.prototype.removeChilds = function (element, childs) {
+            for (var key in childs) {
+                if (typeof this.element[key].nodeType != "undefined") {
+                    if (this.element[key].nodeType == 1) {
+                        this.element[key].removeChild(childs[key]);
+                    }
+                }
+            }
         };
         /**
          *
@@ -1763,7 +1807,7 @@ var Html;
             }
         };
         HtmlElement.prototype.empty = function () {
-            this.element.innerHtml = "";
+            this.removeChildNodes();
         };
         return HtmlElement;
     }());
@@ -1937,7 +1981,9 @@ var Html;
     var Body = (function (_super) {
         __extends(Body, _super);
         function Body() {
-            return _super.apply(this, arguments) || this;
+            var _this = _super.call(this) || this;
+            _this.element = document.body;
+            return _this;
         }
         return Body;
     }(HtmlElement));

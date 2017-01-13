@@ -1,4 +1,4 @@
-///<reference path="../../output/gravity.d.ts"/>
+///<reference path="../Definitions/gravity.d.ts"/>
 
 import { MyCustomComponent } from "../Library/MyCustomComponent";
 

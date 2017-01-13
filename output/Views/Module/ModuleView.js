@@ -1,4 +1,4 @@
-/// <reference path="../../../output/gravity.d.ts"/>
+///<reference path="../../Definitions/gravity.d.ts"/>
 System.register([], function (exports_1, context_1) {
     "use strict";
     var __extends = (this && this.__extends) || function (d, b) {
@@ -10,7 +10,7 @@ System.register([], function (exports_1, context_1) {
     var ModuleView;
     return {
         setters: [],
-        execute: function () {/// <reference path="../../../output/gravity.d.ts"/>
+        execute: function () {///<reference path="../../Definitions/gravity.d.ts"/>
             ModuleView = (function (_super) {
                 __extends(ModuleView, _super);
                 function ModuleView() {
@@ -20,18 +20,13 @@ System.register([], function (exports_1, context_1) {
                  * Create and render all html objects
                  */
                 ModuleView.prototype.initialize = function () {
-                    var body = this.getByTag("body");
-                    var div = new Html.Div();
+                    var div = this.getByTag("div");
                     var text = this.getVar("hello");
-                    var button = new Html.Button();
-                    button.click(function () {
-                        div.append(text);
-                    });
-                    body.append([
-                        button,
-                        "<br/>",
-                        div
-                    ]);
+                    for (var k in div) {
+                        div[k].append([
+                            new Html.H1().append(text)
+                        ]);
+                    }
                 };
                 return ModuleView;
             }(View.Component));

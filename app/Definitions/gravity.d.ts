@@ -1,4 +1,3 @@
-/// <reference path="../../gravity/Definitions/promise-polyfill.d.ts" />
 declare namespace Data {
     class RawModel {
         state: number;
@@ -550,6 +549,7 @@ declare namespace Html {
          * @return {[type]}      [description]
          */
         constructor(name?: any, newClone?: boolean);
+        setElement(element: any): this;
         /**
          *
          */
@@ -557,11 +557,11 @@ declare namespace Html {
         /**
          *
          */
-        byTag(name: string): this;
+        byTag(name: string): any;
         /**
          *
          */
-        byClass(name: string): this;
+        byClass(name: string): any;
         /**
          *
          */
@@ -657,10 +657,9 @@ declare namespace Html {
          * @return {[type]}      [description]
          */
         html(html?: any): any;
-        /**
-         *
-         */
-        getHtml(): any;
+        verifyElement(append: any, type?: string): void;
+        private removeChildNodes();
+        private removeChilds(element, childs);
         /**
          *
          * @param attr
@@ -805,6 +804,7 @@ declare namespace Html {
      * @type {[type]}
      */
     class Body extends HtmlElement {
+        constructor();
     }
     /**
      * [HtmlElement description]
@@ -1428,11 +1428,11 @@ declare namespace View {
         /**
          *
          */
-        getByClass(cls: any): Html.HtmlElement;
+        getByClass(cls: any): any;
         /**
          *
          */
-        getByTag(tag: any): Html.HtmlElement;
+        getByTag(tag: any): any;
         /**
          *
          */

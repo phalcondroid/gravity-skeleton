@@ -1,87 +1,55 @@
-///<reference path="../Definitions/gravity.d.ts"/>
-
+/// <reference path="../../app/Definitions/gravity.d.ts" />
 /**
  * Person ajax model
  */
-export class Person extends Data.ModelAjax
-{
+export declare class Person extends Data.ModelAjax {
     /**
      * the attributes must be initialized with any value, its mandatory
      */
-    private id   : number = 0;
-
+    private id;
     /**
      * Person name
      */
-    private name : string = "";
-
+    private name;
     /**
      * Last name
      */
-    private last : string = "";
-
+    private last;
     /**
      * if you want initialize anything data
      */
-    public initialize()
-    {
-
-    }
-
+    initialize(): void;
     /**
      * Setter to id attribute
      * @param Number id
      * @return void
      */
-    public setId(id : number) : void
-    {
-        this.id = id;
-    }
-
+    setId(id: number): void;
     /**
      * Getter to id attribute
      * @return Number id
      */
-    public getId() : number
-    {
-        return this.id;
-    }
-
+    getId(): number;
     /**
      * Setter to name attribute
      * @param String name
      * @return Void
      */
-    public setName(name : string)
-    {
-        return this.name = name;
-    }
-
+    setName(name: string): string;
     /**
      * Getter to id attribute
      * @return String name
      */
-    public getName() : string
-    {
-        return this.name;
-    }
-
+    getName(): string;
     /**
      * Setter to name attribute
      * @param String last
      * @return Void
      */
-    public setLast(last : string) : void
-    {
-        this.last = last;
-    }
-
+    setLast(last: string): void;
     /**
      * Getter to id attribute
      * @return String id
      */
-    public getLast() : string
-    {
-        return this.last;
-    }
+    getLast(): string;
 }
