@@ -4,12 +4,15 @@
         "module": "system",
         "sourceMap": false,
         "inlineSources": false,
-        "outDir" : "output"
+        "outFile" : "../Output/YourProjectName.js"
     },
     "filesGlob": [
         "./*.ts",
         "./**/*.ts",
         "!./**/*.d.ts",
         "./inspinia.js"
+    ],
+    "exclude": [
+        "app/Definitions"
     ]
 }
